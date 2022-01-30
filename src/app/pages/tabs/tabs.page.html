@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-buttons color="danger">
+      <ion-menu-button menu="first"></ion-menu-button>
+      <ion-searchbar color="danger" placeholder="Search termux tool"></ion-searchbar>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content >
+  <ion-tabs >
+    <ion-tab-bar slot="bottom" color="danger">
+      <ion-tab-button tab="termux">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Termux</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="kalilinux">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Kali Linux</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="videos">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Videos</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>

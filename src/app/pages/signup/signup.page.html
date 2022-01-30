@@ -1,0 +1,92 @@
+<ion-header >
+  <ion-toolbar color="danger">
+    <ion-title>Dev-Termux</ion-title>
+    <ion-buttons slot="start" >
+      <ion-back-button defaulthref="login"  text="Back" ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content class="ion-text-center" color="danger">
+  
+    <ion-card-title>
+      Sign Up
+    </ion-card-title>
+ 
+  
+  <ion-card-content class="ion-non-padding">
+      <p>Create your account by filling this field!</p>
+    <div class="ion-non-padding wrapform">
+      <ion-item color="danger">
+          <ion-label position="floating">
+                <ion-icon name="person-outline"></ion-icon>
+                Name
+            </ion-label>
+        
+        <ion-input type="text"  [(ngModel)]="name" required></ion-input>
+      </ion-item>
+
+        <ion-item color="danger">
+          
+            <ion-label position="floating">
+                <ion-icon name="call-outline"></ion-icon>
+                Phone No.
+            </ion-label>
+          <ion-input type="tel"  [(ngModel)]="phone" required></ion-input>
+        </ion-item>
+        
+        <ion-item color="danger">
+             <ion-label position="floating">
+                <ion-icon name="mail-outline"></ion-icon>
+                Email
+            </ion-label>
+        
+        <ion-input type="email"  [(ngModel)]="email"   required></ion-input>
+      </ion-item>
+        
+      <ion-item color="danger">
+           <ion-label position="floating">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                **********
+            </ion-label>
+        
+        <ion-input type="password" [(ngModel)]="password"   required></ion-input>
+
+      </ion-item>
+      <ion-item color="danger">
+        <ion-label position="floating">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                **********
+            </ion-label>
+        <ion-input type="password" [(ngModel)]="confpassword" (ionChange)='checkPassword()' required></ion-input>
+        <ion-text *ngIf="password && !passwordMatch" color='danger'>Password doesn't match</ion-text>
+        <ion-text *ngIf="password && passwordMatch" color='success'>Password match</ion-text>
+      </ion-item>
+    </div>
+
+    <div class="sign-btn-wrap">
+        <ion-button fill="solid" shape="round" class="sign-up" (click)="SignUp()">Sign Up</ion-button>
+    </div>
+    <!--
+    <div class="text-tag">
+      <span>or via social media</span>
+    </div>
+
+    <div class="social-btns">
+      <ion-button class="facebookbtn ion-non-padding "  color="white">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-button>
+      <ion-button  class="googlebtn  ion-non-padding "  color="white">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-button>
+      <ion-button  class="applebtn  ion-non-padding "  color="white">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-button>
+    </div>
+ -->
+  </ion-card-content>
+  <div class="ion-card-footer">
+    <button class="ion-no-padding" (click)="RedirectToLoginscreenPage()">Already have an account? Sign In</button>
+  </div>
+</ion-content>

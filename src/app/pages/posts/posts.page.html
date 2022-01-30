@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons color="danger">
+      <ion-menu-button menu="first"></ion-menu-button>
+      <ion-title>Tgeniusclub Blog</ion-title>
+    </ion-buttons>
+    
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label>
+      <strong>Total Posts</strong>
+    </ion-label>
+    <ion-badge color="danger" *ngIf="postCount">{{ postCount }}</ion-badge>
+  </ion-item>
+
+  <ion-card *ngFor="let post of Posts">
+    <ion-card-header>
+      <ion-card-title [innerHTML]="post.title.rendered"></ion-card-title>
+      <ion-card-subtitle>{{ post.date_gmt | date }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div [innerHTML]="post.excerpt.rendered"></div>
+      <ion-button expand="full" fill="clear" [routerLink]="['/', 'post-detail', post.id]">Read More</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll threshold="120px" (ionInfinite)="infiniteLoad($event)">
+    <ion-infinite-scroll-content loadingText="Fetching Posts">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

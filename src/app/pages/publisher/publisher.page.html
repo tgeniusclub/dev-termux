@@ -1,0 +1,100 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar color="danger">
+    <ion-buttons>
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Publish Tool</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content color="danger">
+  <ion-card class="ion-text-center" *ngIf="!isUploading && !isUploaded">
+    <ion-card-header>
+      <ion-card-title>Choose tool Images </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button color="primary" size="medium">
+        <input type="file" (change)="uploadphoto($event.target.files)" />
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- File upload progress bar -->
+  <div *ngIf="percentageVal | async as percentage">
+    Progress: {{ percentage | number }}%
+    <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
+  </div>
+
+  <div *ngIf="trackSnapshot | async as snap">
+    File size: {{ snap.totalBytes | formatFileSize }} 
+    
+    Data transfered: {{ snap.bytesTransferred | formatFileSize }}
+  </div>    
+
+  <ion-card color="light" class="ion-text-center" *ngFor="let item of files | async">
+    
+
+    <ion-card-content>
+      <img [src]="item.postPhoto" />
+      <a [href]="item.postPhoto" target="_blank" rel="noopener">Download</a>
+    </ion-card-content>
+  </ion-card>
+
+
+
+      <div class="wrapform">
+        <ion-list>
+          <ion-item>
+        <ion-label position="floating">Tool Name</ion-label>
+        <ion-input  type="text" [(ngModel)]="toolname" name="toolname"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label  position="floating"></ion-label>
+        <ion-input type="text" [(ngModel)]="publishername" name="publishername">{{user_name}}</ion-input>
+      </ion-item>
+
+    <ion-item>
+      <ion-label>Tool type</ion-label>
+      <ion-select value="a" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="a">Social Engineering</ion-select-option>
+        <ion-select-option value="b">Brute forcing</ion-select-option>
+        <ion-select-option value="c">Phishing attack</ion-select-option>
+        <ion-select-option value="d">Information gathering</ion-select-option>
+        <ion-select-option value="e">Vulnerability scanning</ion-select-option>
+        <ion-select-option value="f">Exploitation tools</ion-select-option>
+
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+    <ion-label position="floating">Developer Name</ion-label>
+    <ion-input type="text" [(ngModel)]="developername" name="developername"></ion-input>
+    </ion-item>
+
+    <ion-item>
+    <ion-label  position="floating">Tool Description</ion-label>
+    <ion-textarea type="text" [(ngModel)]="tooldescription" name="tooldescription"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>Notes</ion-label>
+    <ion-textarea type="text" [(ngModel)]="note" name="note" rows="6" cols="20"  placeholder="Write all the description of the tool here. Installation process, dependencies."></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+    <ion-label position="floating">Contributors</ion-label>
+    <ion-input  type="text" [(ngModel)]="contributors" name="contributors"></ion-input>
+
+    </ion-item>
+
+    <ion-item>
+    <ion-label  position="floating">Disclaimer</ion-label>
+    <ion-textarea type="text" [(ngModel)]="disclaimer" name="disclaimer"></ion-textarea>
+    </ion-item>
+
+    </ion-list>
+    <ion-button expand="block" color="danger" (click)="publishtool()">Publish tool</ion-button>
+  </div>
+</ion-content>

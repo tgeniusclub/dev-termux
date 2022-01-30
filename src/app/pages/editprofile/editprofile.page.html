@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button defaulthref="/profile" text="Back" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+    
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  
+  <ion-card-content>
+    <div class="wrapform">
+      <ion-item>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input type="text" placeholder="Name" [(ngModel)]="name" name="name" required></ion-input>
+      </ion-item>
+
+        <ion-item>
+          <ion-icon name="call-outline" slot="start"></ion-icon>
+          <ion-input type="tel" placeholder="Phone No." [(ngModel)]="phone" name="phone" required></ion-input>
+        </ion-item>
+        <ion-item>
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input type="email" placeholder="Email" [(ngModel)]="email" name="email"   required></ion-input>
+
+      </ion-item>
+      
+      
+    </div>
+
+    <div class="sign-btn-wrap">
+        <ion-button fill="solid" shape="round" class="sign-up" (click)="updateProfile()" color="danger">Update</ion-button>
+    </div>
+
+    
+  </ion-card-content>
+</ion-content>
