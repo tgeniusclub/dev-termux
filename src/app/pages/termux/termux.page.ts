@@ -1,6 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from 'src/app/services/auth.service';
+import { LoadingController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-termux',
   templateUrl: './termux.page.html',
@@ -8,11 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TermuxPage implements OnInit {
 
-  constructor(public router:Router) { }
+  constructor(
+    public router:Router,
+    private auth:AuthService,
+    ) { }
 
   ngOnInit() {
   }
   essaie(){
    this.router.navigate(['/publisher']) 
   }
+  
 }

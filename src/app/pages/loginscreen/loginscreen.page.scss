@@ -19,10 +19,16 @@ ion-item{
   --inner-padding-end:0;
     font-size: 15px;
   ion-input{
-    color:white;
-
-
+    color:black;
+    height: 5px;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: none;
+    text-indent: 10px;
+    border-bottom: 0px solid blue;
   }
+
 }
 ion-icon{
   padding-right:6px;

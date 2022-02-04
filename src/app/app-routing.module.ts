@@ -94,6 +94,10 @@ const routes: Routes = [
   {
     path: 'toolview',
     loadChildren: () => import('./pages/toolview/toolview.module').then( m => m.ToolviewPageModule)
+  },
+  {
+    path: 'termux-api',
+    loadChildren: () => import('./pages/termux-api/termux-api.module').then( m => m.TermuxApiPageModule)
   }
   
 

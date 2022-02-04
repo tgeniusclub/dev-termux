@@ -1,0 +1,21 @@
+h1{
+    text-align: center;
+}
+.overlay{
+    position:relative;
+    text-align:center;
+    
+    ion-title{
+        position: relative;
+        text-align: left;
+    }
+}
+ion-avatar{
+    height:50px;
+    width:50px;
+    margin:auto;
+    border: 2px solid;
+}
+ion-toolbar{
+    height: auto;
+}

@@ -17,6 +17,7 @@ export class EditprofilePage implements OnInit {
   email:string;
   phone:string;
   user:User;
+  user_photo: string;
 
   constructor(
     private auth:AuthService,
@@ -33,6 +34,7 @@ export class EditprofilePage implements OnInit {
       this.name = user.name;
       this.email = user.email;
       this.phone = user.phoneNumber;
+      this.user_photo=user.userPhoto;
     })
   }
 

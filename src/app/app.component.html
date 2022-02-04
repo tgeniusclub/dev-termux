@@ -3,11 +3,21 @@
   <ion-header>
   
     <ion-toolbar color="danger">
-     <ion-avatar>
-     <ion-img  [src]="user_photo"></ion-img>
-   </ion-avatar>
-        {{user_name}}
-      <ion-title>Menu</ion-title>
+      <div class="overlay" >
+        <ion-avatar >
+      <ion-img [src]="user_photo" ></ion-img>
+    </ion-avatar>
+      </div>
+
+        <div >
+          <ion-label style="margin:auto;" >
+            Name:{{user_name}}  
+           </ion-label>
+           <ion-label> 
+            {{email_display}}
+           </ion-label>
+        </div>    
+               
     </ion-toolbar>
     
       
@@ -48,9 +58,12 @@
 
           <ion-avatar>
             <ion-img  src="/../assets/images/tgeny.png"></ion-img>
+           
           </ion-avatar>
-         Tgeniusclub Blog
+          <p style=" margin:auto;">
+            Tgeniusclub blog</p>
       </ion-item >
+
     </ion-list>
   </ion-content>
 

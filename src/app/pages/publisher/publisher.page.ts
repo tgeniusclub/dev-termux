@@ -14,7 +14,7 @@ import { finalize, tap } from 'rxjs/operators';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { FormatFileSizePipe } from './format-file-size.pipe';
-
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 export interface imgFile {
   Name: string;
@@ -30,6 +30,7 @@ export interface imgFile {
 })
 export class PublisherPage implements OnInit {
 
+  form: FormGroup;
      // File upload task 
   fileUploadTask: AngularFireUploadTask;
 
@@ -84,7 +85,8 @@ export class PublisherPage implements OnInit {
     private loadingctrl:LoadingController,
     private toastr:ToastController,
     private menu:MenuController,
-    private router:Router
+    private router:Router,
+    public fb: FormBuilder
   ) { 
     this.isFileUploading = false;
     this.isFileUploaded = false;
@@ -101,6 +103,7 @@ export class PublisherPage implements OnInit {
       this.email = user.email;
       this.phone = user.phoneNumber;
     })
+    
   }
  logout(){
    this.router.navigate[('/login')]
@@ -116,78 +119,78 @@ async uploadphoto(event: FileList) {
 
   loading.present();
 
+  
+    const file = event.item(0)
+
+    // Image validation
+    if (file.type.split('/')[0] !== 'image') { 
+      this.loadingctrl.dismiss();
+      this.toast('File type is not supported','danger')
+      //console.log('File type is not supported!')
+      return;
+    }
+    
+    this.isFileUploading = true;
+    this.isFileUploaded = false;
+    
+    this.imgName = file.name;
+    
+    // Storage path
+    const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
+    
+    // Image reference
+    var imageRef = this.afStorage.ref(fileStoragePath);
+    
+    
+    
+    
+    // File upload task
+    this.fileUploadTask = this.afStorage.upload(fileStoragePath, file);
+    
+    this.loadingctrl.dismiss();
+    this.percentageVal = this.fileUploadTask.percentageChanges();
+    
+    //this.userId=this.user.userId;
+    this.fileUploadTask.then(resp =>{
+      var imgFile = resp.task.snapshot.ref.getDownloadURL();
+      imgFile.then(downloadableUrl =>{
+    
+        
+        //console.log("URL", downloadableUrl);
+        this.afs.collection('user').doc(this.user_id).update({
+          posts: firebase.default.firestore.FieldValue.arrayUnion({
+            'toolname':this.toolname,
+            'publishername':this.user_name,
+            //'tooltype':this.tooltype,
+            
+            'postPhoto':downloadableUrl,
+            'developername':this.developername,
+            'contributor':this.contributors,
+            'tooldescription':this.tooldescription,
+            'note':this.note,
+            'disclaimer':this.disclaimer,
+            'postAt':Date.now()
+            
+          })
+        }).then(()=>{
+          loading.dismiss();
+          this.toast('published Success, ', 'success');
+          this.router.navigate(['/tabs']);
+        }).catch(error =>{
+         loading.dismiss();
+         this.toast(error.message,'danger');
+       })
+      })
+    }).catch(error =>{
+      loading.dismiss();
+      this.toast(error.message,'danger');
+    }) 
+
+  
 
 
-if(this.toolname==="" && this.publishername==="" && this.user_name==="" && this.developername===""
-      && this.contributors==="" && this.tooldescription==="" && this.note===""){
-        loading.dismiss();
-        this.toast('Must fill all the required filed','danger');
-      }else{
-        const file = event.item(0)
-
-// Image validation
-if (file.type.split('/')[0] !== 'image') { 
-  this.loadingctrl.dismiss();
-  this.toast('File type is not supported','danger')
-  //console.log('File type is not supported!')
-  return;
-}
-
-this.isFileUploading = true;
-this.isFileUploaded = false;
-
-this.imgName = file.name;
-
-// Storage path
-const fileStoragePath = `filesStorage/${new Date().getTime()}_${file.name}`;
-
-// Image reference
-var imageRef = this.afStorage.ref(fileStoragePath);
-
-
-
-
-// File upload task
-this.fileUploadTask = this.afStorage.upload(fileStoragePath, file);
-
-this.loadingctrl.dismiss();
-this.percentageVal = this.fileUploadTask.percentageChanges();
-
-//this.userId=this.user.userId;
-this.fileUploadTask.then(resp =>{
-  var imgFile = resp.task.snapshot.ref.getDownloadURL();
-  imgFile.then(downloadableUrl =>{
 
     
-    //console.log("URL", downloadableUrl);
-    this.afs.collection('user').doc(this.user_id).update({
-      posts: firebase.default.firestore.FieldValue.arrayUnion({
-        'toolname':this.toolname,
-        'publishername':this.user_name,
-        //'tooltype':this.tooltype,
-        
-        'postPhoto':downloadableUrl,
-        'developername':this.developername,
-        'contributor':this.contributors,
-        'tooldescription':this.tooldescription,
-        'note':this.note,
-        'disclaimer':this.disclaimer,
-        'postAt':Date.now()
-        
-      })
-    }).then(()=>{
-      loading.dismiss();
-      this.toast('published Success, ', 'success');
-      this.router.navigate(['/tabs']);
-    }).catch(error =>{
-     loading.dismiss();
-     this.toast(error.message,'danger');
-   })
-  })
-}).catch(error =>{
-  loading.dismiss();
-  this.toast(error.message,'danger');
-}) }
 // Show uploading progress
 
 /*

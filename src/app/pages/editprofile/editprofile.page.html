@@ -1,9 +1,64 @@
+
+  
+
+<ion-content color="danger"  >
+  <div class="container"  >
+    
+      <h1 >Edit {{name}} information</h1>
+    
+      <ion-item color="danger">
+        <ion-icon name="person" slot="start"> Username</ion-icon>
+        
+        {{name}}
+      </ion-item>
+
+      <ion-item color="danger">
+        <ion-icon name="mail" slot="start"> Email</ion-icon>
+        {{email}}
+      </ion-item>
+
+      <ion-item color="danger">
+        <ion-icon name="call" slot="start"> Phone Number</ion-icon>
+        
+        {{phone}}
+      </ion-item >
+
+      <ion-item color="danger">
+        <ion-icon name="id-card-outline" slot="start"> UserId</ion-icon>
+        
+        {{userId}}
+      </ion-item>
+      
+
+      <ion-item color="danger">
+       <ion-icon name="calendar-number-outline" slot="start">
+          
+          </ion-icon>
+        
+        User Since{{usersince | date}}
+      </ion-item>
+    
+      <ion-button color="danger" (click)="editprofile()" class="editbtn" disabled>Edit user</ion-button>
+    
+  </div>
+     
+    
+  
+
+  
+
+</ion-content>
+
+<!--====================================================-->
 <ion-header>
+  
   <ion-toolbar color="danger">
-    <ion-buttons slot="start">
-      <ion-back-button defaulthref="/profile" text="Back" ></ion-back-button>
-    </ion-buttons>
-    <ion-title>Edit Profile</ion-title>
+    <div class="overlay" >
+      <ion-avatar >
+    <ion-img [src]="user_photo" (click)="uploadpicture()" >             </ion-img>
+  </ion-avatar>
+  <ion-title>Edit Profile</ion-title>
+    </div>
     
   </ion-toolbar>
   
