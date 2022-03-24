@@ -98,6 +98,14 @@ const routes: Routes = [
   {
     path: 'termux-api',
     loadChildren: () => import('./pages/termux-api/termux-api.module').then( m => m.TermuxApiPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'zphisher',
+    loadChildren: () => import('./pages/zphisher/zphisher.module').then( m => m.ZphisherPageModule)
   }
   
 

@@ -2,13 +2,24 @@
   <ion-toolbar color="danger">
     <ion-buttons color="danger">
       <ion-menu-button menu="first"></ion-menu-button>
-      <ion-searchbar color="danger" placeholder="Search termux tool"></ion-searchbar>
+      <ion-searchbar [(ngModel)]="filterTerm" animated="true" color="danger" placeholder="Search termux tool"></ion-searchbar>
     </ion-buttons>
   </ion-toolbar>
   
 </ion-header>
 
 <ion-content >
+  <ion-list>
+    <ion-item *ngFor="let data of userRecords | filter:filterTerm">
+      <ion-label>{{data.id}}</ion-label>
+      <ion-label>{{data.toolname}}</ion-label>
+      <ion-label>{{data.developername}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+
+
+  
   <ion-tabs >
     <ion-tab-bar slot="bottom" color="danger">
       <ion-tab-button tab="termux">
@@ -16,14 +27,14 @@
         <ion-label>Termux</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="kalilinux">
+      <ion-tab-button  routerLink="/chat">
         <ion-icon name="person-circle"></ion-icon>
-        <ion-label>Kali Linux</ion-label>
+        <ion-label>Chat</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="videos">
+      <ion-tab-button tab="/posts">
         <ion-icon name="map"></ion-icon>
-        <ion-label>Videos</ion-label>
+        <ion-label>Tgc Blog</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="about">

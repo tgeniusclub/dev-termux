@@ -32,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { File } from '@ionic-native/file/ngx';
 
 import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,7 +45,8 @@ import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
     
   
     

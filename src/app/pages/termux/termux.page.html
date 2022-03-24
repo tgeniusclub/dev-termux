@@ -3,6 +3,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-item *ngIf="posts | async as postdata"> 
+    <ion-avatar>
+      <ion-img [src]="postPhoto"  > </ion-img>
+        <p> {{ postdata.developername}}</p> 
+    </ion-avatar>
+    IP-Info
+  </ion-item>
 
   <ion-item-group>
     <ion-header>
@@ -155,4 +162,5 @@
     </ion-item>
 
   </ion-item-group>
+  
 </ion-content>

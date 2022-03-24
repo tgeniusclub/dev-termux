@@ -1,3 +1,4 @@
+
 export interface User {
     userId:string;
     displayName:string,
@@ -17,6 +18,14 @@ export interface User {
     createAt:number;
 
     
+}
+export interface Message{
+    createdAt:firebase.default.firestore.FieldValue;
+    id:string;
+    msg:string;
+    from:string;
+    fromName:string;
+    myMsg:boolean;
 }
 
 
